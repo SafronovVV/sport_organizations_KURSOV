@@ -13,7 +13,7 @@
     = f.select :sport_id, Sport.all.collect {|u| [u.name, u.id]}, {}, { class: 'form-control' }
   .form-group.col-md-7
     = f.label 'Место проведения*'
-    = f.select :sport_complex_id, SportComplex.all.collect {|u| [u.name, u.id]}, {}, { class: 'form-control' }
+    = f.select :sport_complex_id, SportComplex.all.decorate.collect {|u| [u.short_info, u.id]}, {}, { class: 'form-control' }
   .form-group.col-md-7
     p.text-muted * - Обязательное поле
   .form-group.col-md-7

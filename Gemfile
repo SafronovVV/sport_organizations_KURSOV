@@ -19,6 +19,7 @@ gem 'bootstrap', '~> 4.0.0'
 gem 'sprockets-rails'
 gem 'jquery-rails'
 gem "select2-rails"
+gem 'draper', github: 'drapergem/draper'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

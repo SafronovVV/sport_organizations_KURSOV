@@ -1,7 +1,7 @@
 = form_for @request, url: { action: :create }, html: { class: 'mt-3 form-row' } do |f|
   .form-group.col-md-7
     = f.label 'Участник*'
-    = f.select :participant_id, Participant.all.collect {|u| [u.name, u.id]}, {}, { class: 'form-control' }
+    = f.select :participant_id, Participant.all.decorate.collect {|u| [u.short_info, u.id]}, {}, { class: 'form-control' }
   .form-group.col-md-7
     = f.label 'Соревнование*'
     = f.select :competition_id, Competition.all.collect {|u| [u.name, u.id]}, {}, { class: 'form-control' }
