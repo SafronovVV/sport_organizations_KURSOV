@@ -20,6 +20,9 @@ gem 'sprockets-rails'
 gem 'jquery-rails'
 gem "select2-rails"
 gem 'draper', github: 'drapergem/draper'
+gem 'responders'
+gem 'htmltoword', git: "https://github.com/karnov/htmltoword"
+gem "font-awesome-rails"
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

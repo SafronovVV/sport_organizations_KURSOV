@@ -1,5 +1,9 @@
 h1.mt-3 Участники
-= link_to 'Новый', new_participant_path, class: "btn btn-outline-primary mt-3"
+.btn-group role="group"
+  = link_to 'Новый', new_participant_path, class: "btn btn-outline-primary mt-3"
+  = link_to participants_list_download_path(participant_ids: @participants.to_a), class: 'btn btn-primary mt-3', 'data-toggle' => 'tooltip',
+   'title' => 'Скачать список docx' do
+    i.fa.fa-download
 .row.mt-3
   .col-md
     table.table

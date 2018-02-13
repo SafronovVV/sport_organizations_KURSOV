@@ -1,0 +1,15 @@
+table.table
+  thead
+    tr
+      th #
+      th Заявка
+      th Болен
+      th Явился
+  tbody
+    - @requests.each do |request|
+      tr
+        td = request.id
+        td
+          = link_to request.decorate.result_title, results_path(request_id: request)
+        td = yesno(request.is_ill)
+        td = yesno(request.appeared)

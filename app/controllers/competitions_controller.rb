@@ -1,4 +1,5 @@
 class CompetitionsController < ApplicationController
+  respond_to :docx
 
   def new
     @competition = Competition.new

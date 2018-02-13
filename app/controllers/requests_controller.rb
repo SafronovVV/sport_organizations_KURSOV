@@ -17,10 +17,18 @@ class RequestsController < ApplicationController
     @requests = get_collection
   end
 
+  def download_list
+    @requests = Request.find(params[:request_ids])
+    respond_to do |format|
+      format.docx { render docx: 'requests_list', filename: 'requests_list.docx' }
+    end
+  end
+
   private
 
   def get_collection
-    params[:participant_id] ? Participant.find(params[:participant_id]).requests : Request.all
+    (params[:participant_id] || params[:competition_id]) ? Request.where('participant_id = ? OR competition_id = ?',
+      params[:participant_id], params[:competition_id]) : Request.all
   end
 
   def request_params

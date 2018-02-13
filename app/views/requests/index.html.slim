@@ -1,5 +1,9 @@
 h1.mt-3 Заявки
-= link_to 'Новый', new_request_path, class: "btn btn-outline-primary mt-3"
+.btn-group role="group"
+  = link_to 'Новый', new_request_path, class: "btn btn-outline-primary mt-3"
+  = link_to requests_list_download_path(request_ids: @requests.to_a), class: 'btn btn-primary mt-3', 'data-toggle' => 'tooltip',
+     'title' => 'Скачать список docx' do
+     i.fa.fa-download
 .row.mt-3
   .col-md
     table.table
