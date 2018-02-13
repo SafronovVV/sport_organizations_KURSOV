@@ -1,11 +1,11 @@
 = form_for @sport_complex, url: { action: :create }, html: { class: 'mt-3 form-row' } do |f|
-  .form-group.col-md-6
+  .form-group.col-md-7
     = f.label 'Название'
     = f.text_field :name, class: 'form-control'
-  .form-group.col-md-6
+  .form-group.col-md-7
     = f.label 'Адрес'
     = f.text_field :address, class: 'form-control'
-  .form-group.col-md-6
+  .form-group.col-md-7
     = f.label 'Вместимость'
     = f.text_field :capacity, class: 'form-control'
   .form-group.col-md-7
