@@ -12,6 +12,16 @@ html(data={the_log: Rails.env.development?})
 
     = csrf_meta_tags
   body
-    = yield
+    nav.navbar.navbar-expand-lg.navbar-light.bg-light
+      = link_to 'Спорт коммитет', root_path, class: 'navbar-brand'
+      button.navbar-toggler [aria-controls="navbarNav" aria-expanded="false"
+      aria-label=("Toggle navigation") data-target="#navbarNav" data-toggle="collapse" type="button"]
+        span.navbar-toggler-icon
+      #navbarNav.collapse.navbar-collapse
+        ul.navbar-nav
+          li.nav-item
+            = link_to 'Виды спорта', sports_path, class: 'nav-link'
+    .container-fluid
+      = yield
 
 

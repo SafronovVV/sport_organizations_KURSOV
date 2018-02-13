@@ -1,0 +1,13 @@
+.row.mt-3
+  .col-md
+    table.table
+      thead
+        tr
+          th #
+          th Название
+      tbody
+        - @sports.each do |sport|
+          tr
+            td = sport.id
+            td = sport.name
+= link_to 'Новый', new_sport_path, class: "btn btn-outline-primary"
