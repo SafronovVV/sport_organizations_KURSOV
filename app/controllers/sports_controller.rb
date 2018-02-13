@@ -20,6 +20,6 @@ class SportsController < ApplicationController
   private
 
   def sport_params
-    params.require(:sport).permit(:name)
+    params.require(:sport).permit(:name, :organizator, :date, :sport_id, :sport_complex_id)
   end
 end

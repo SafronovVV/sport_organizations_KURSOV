@@ -4,7 +4,7 @@
     = f.text_field :name, class: 'form-control'
   .form-group.col-md-7
     = f.label 'Тип клуба'
-    = f.select :club_type, Club.club_types.keys, {}, { class: 'form-control js-example-basic-single' }
+    = f.select :club_type, Club.club_types.keys, {}, { class: 'form-control' }
   .form-group.col-md-7
     = f.label 'Организация'
     = f.select :sport_organization_id, SportOrganization.all.collect {|u| [u.name, u.id]}, {}, { class: 'form-control' }

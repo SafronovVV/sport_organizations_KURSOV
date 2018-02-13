@@ -1,0 +1,21 @@
+= link_to 'Новый', new_competition_path, class: "btn btn-outline-primary mt-3"
+.row.mt-3
+  .col-md
+    table.table
+      thead
+        tr
+          th #
+          th Название
+          th Организатор
+          th Дата проведения
+          th Вид спорта
+          th Место
+      tbody
+        - @competitions.each do |competition|
+          tr
+            td = competition.id
+            td = competition.name
+            td = competition.organizator.presence || 'Не указано'
+            td = competition.date.strftime("%m/%d/%Y").presence || 'Не указано'
+            td = competition.sport.name
+            td = competition.sport_complex.name
