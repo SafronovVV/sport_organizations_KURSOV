@@ -23,6 +23,8 @@ html(data={the_log: Rails.env.development?})
             = link_to 'Виды спорта', sports_path, class: 'nav-link'
           li.nav-item
             = link_to 'Спорткомплексы', sport_complexes_path, class: 'nav-link'
+          li.nav-item
+            = link_to 'Организации', sport_organizations_path, class: 'nav-link'
     .container-fluid
       = yield
 
