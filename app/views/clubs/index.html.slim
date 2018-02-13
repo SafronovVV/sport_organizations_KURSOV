@@ -1,0 +1,19 @@
+.row.mt-3
+  .col-md
+    table.table
+      thead
+        tr
+          th #
+          th Название
+          th Тип клуба
+          th Организация
+          th Вид спорта
+      tbody
+        - @clubs.each do |club|
+          tr
+            td = club.id
+            td = club.name
+            td = club.club_type
+            td = club.sport_organization.name
+            td = club.sport.name
+= link_to 'Новый', new_club_path, class: "btn btn-outline-primary"

@@ -3,5 +3,6 @@ Rails.application.routes.draw do
   resources :sports, only: %i[index new create]
   resources :sport_complexes, only: %i[index new create]
   resources :sport_organizations, only: %i[index new create]
+  resources :clubs, only: %i[index new create]
   root 'sports#index'
 end

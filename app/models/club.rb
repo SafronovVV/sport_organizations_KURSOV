@@ -1,6 +1,8 @@
 class Club < ApplicationRecord
-  belongs_to :sport_organization, optional: true
+  belongs_to :sport_organization
   belongs_to :sport
 
-  enum club_type: { children: 0, youthful: 1, adult: 2 }
+  validates_presence_of :name
+
+  enum club_type: { "Детский" => 0 , "Юношеский" => 1 , "Взрослый" => 2 }
 end

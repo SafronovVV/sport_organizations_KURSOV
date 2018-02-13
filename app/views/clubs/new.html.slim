@@ -1,0 +1,15 @@
+= form_for @club, url: { action: :create }, html: { class: 'mt-3 form-row' } do |f|
+  .form-group.col-md-7
+    = f.label 'Название'
+    = f.text_field :name, class: 'form-control'
+  .form-group.col-md-7
+    = f.label 'Тип клуба'
+    = f.select :club_type, Club.club_types.keys, {}, { class: 'form-control' }
+  .form-group.col-md-7
+    = f.label 'Организация'
+    = f.select :sport_organization_id, SportOrganization.all.collect {|u| [u.name, u.id]}, {}, { class: 'form-control' }
+  .form-group.col-md-7
+    = f.label 'Вид спорта'
+    = f.select :sport_id, Sport.all.collect {|u| [u.name, u.id]}, {}, { class: 'form-control' }
+  .form-group.col-md-7
+    = f.submit 'Создать', class: 'btn btn-primary'
