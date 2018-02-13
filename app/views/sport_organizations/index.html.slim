@@ -1,3 +1,4 @@
+= link_to 'Новый', new_sport_organization_path, class: "btn btn-outline-primary mt-3"
 .row.mt-3
   .col-md
     table.table
@@ -12,4 +13,3 @@
             td = sport_organization.id
             td = sport_organization.name
             td = sport_organization.director_name.presence || 'Не указано'
-= link_to 'Новый', new_sport_organization_path, class: "btn btn-outline-primary"
