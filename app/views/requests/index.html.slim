@@ -1,0 +1,19 @@
+= link_to 'Новый', new_request_path, class: "btn btn-outline-primary mt-3"
+.row.mt-3
+  .col-md
+    table.table
+      thead
+        tr
+          th #
+          th ФИО участника
+          th Соревнование
+          th Болен
+          th Явился
+      tbody
+        - @requests.each do |request|
+          tr
+            td = request.id
+            td = request.participant.name
+            td = request.competition.name
+            td = yesno(request.is_ill)
+            td = yesno(request.appeared)
