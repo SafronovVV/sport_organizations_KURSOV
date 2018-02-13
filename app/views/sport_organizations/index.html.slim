@@ -12,5 +12,5 @@ h1.mt-3 Спортивные организации
         - @sport_organizations.each do |sport_organization|
           tr
             td = sport_organization.id
-            td = sport_organization.name
+            td = link_to sport_organization.name, clubs_path(sport_organization_id: sport_organization)
             td = sport_organization.director_name.presence || 'Не указано'

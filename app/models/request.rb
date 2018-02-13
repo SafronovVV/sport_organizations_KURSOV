@@ -1,5 +1,5 @@
 class Request < ApplicationRecord
   belongs_to :participant
   belongs_to :competition
-  has_one :result
+  has_one :result, dependent: :destroy
 end

@@ -14,10 +14,21 @@ class ParticipantsController < ApplicationController
   end
 
   def index
-    @participants = Participant.all
+    @participants = get_collection
   end
 
   private
+
+  def get_collection
+    if params[:club_id]
+      return Participant.where(club_id: params[:club_id])
+    elsif params[:competition_id]
+      return Competition.find(params[:competition_id]).requests.
+             map {|c| c.participant}
+    else
+      return Participant.all
+    end
+  end
 
   def participant_params
     params.require(:participant).permit(:name, :age, :growth, :weight, :club_id)

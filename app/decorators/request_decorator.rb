@@ -2,6 +2,6 @@ class RequestDecorator < Draper::Decorator
   delegate_all
 
   def result_title
-    participant.name + ' / ' + competition.name
+    participant.decorate.short_info + ' / ' + competition.name
   end
 end

@@ -6,15 +6,14 @@ h1.mt-3 Заявки
       thead
         tr
           th #
-          th ФИО участника
-          th Соревнование
+          th Заявка
           th Болен
           th Явился
       tbody
         - @requests.each do |request|
           tr
             td = request.id
-            td = request.participant.name
-            td = request.competition.name
+            td
+              = link_to request.decorate.result_title, results_path(request_id: request)
             td = yesno(request.is_ill)
             td = yesno(request.appeared)

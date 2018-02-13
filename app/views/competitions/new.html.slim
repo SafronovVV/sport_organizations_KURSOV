@@ -8,7 +8,7 @@ h1.mt-3 Новое соревнование
     = f.text_field :organizator, class: 'form-control'
   .form-group.col-md-7
     = f.label 'Дата проведения*'
-    = f.date_select :date, {start_year: Date.current.year, end_year: 2040, use_month_names: @month_names}, { id: 'date-select', class: 'form-control' }
+    = f.date_select :date, {start_year: Date.current.year, end_year: 2040, use_month_names: month_names}, { id: 'date-select', class: 'form-control' }
   .form-group.col-md-7
     = f.label 'Вид спорта*'
     = f.select :sport_id, Sport.all.collect {|u| [u.name, u.id]}, {}, { class: 'form-control' }

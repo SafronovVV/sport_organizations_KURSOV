@@ -14,10 +14,14 @@ class RequestsController < ApplicationController
   end
 
   def index
-    @requests = Request.all
+    @requests = get_collection
   end
 
   private
+
+  def get_collection
+    params[:participant_id] ? Participant.find(params[:participant_id]).requests : Request.all
+  end
 
   def request_params
     params.require(:request).permit(:is_ill, :appeared, :participant_id, :competition_id)

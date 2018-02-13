@@ -1,8 +1,6 @@
 class CompetitionsController < ApplicationController
 
   def new
-    @month_names = %i[ Январь Февраль Март Апрель Май Июнь Июль Август Сентябрь
-                      Октябрь Ноябрь Декабрь ]
     @competition = Competition.new
   end
 
@@ -16,10 +14,15 @@ class CompetitionsController < ApplicationController
   end
 
   def index
-    @competitions = Competition.all
+    @competitions = get_collection
   end
 
   private
+
+  def get_collection
+    (params[:sport_id] || params[:sport_complex_id]) ? Competition.where('sport_id=? OR sport_complex_id=?',
+          params[:sport_id], params[:sport_complex_id]) : Competition.all
+  end
 
   def competition_params
     params.require(:competition).permit(:name, :organizator, :date, :sport_id, :sport_complex_id)

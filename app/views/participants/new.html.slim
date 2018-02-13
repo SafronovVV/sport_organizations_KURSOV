@@ -13,8 +13,8 @@ h1.mt-3 Новый участник
     = f.label 'Вес*'
     = f.text_field :weight, class: 'form-control'
   .form-group.col-md-7
-    = f.label 'Клуб*'
-    = f.select :club_id, Club.all.decorate.collect {|u| [u.short_info, u.id]}, {}, { class: 'form-control' }
+    = f.label 'Клуб'
+    = f.select :club_id, Club.all.decorate.collect {|u| [u.short_info, u.id]}, { prompt: 'Не указано' }, { class: 'form-control' }
   .form-group.col-md-7
     p.text-muted * - Обязательное поле
   .form-group.col-md-7

@@ -13,6 +13,7 @@ h1.mt-3 Спорткомплексы
         - @sport_complexes.each do |sport_complex|
           tr
             td = sport_complex.id
-            td = sport_complex.name
+            td
+              = link_to sport_complex.name, competitions_path(sport_complex_id: sport_complex)
             td = sport_complex.address
             td = sport_complex.capacity.presence || 'Не указано'

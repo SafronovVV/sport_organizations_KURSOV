@@ -14,10 +14,14 @@ class ResultsController < ApplicationController
   end
 
   def index
-    @results = Result.all
+    @results = get_collection
   end
 
   private
+
+  def get_collection
+    params[:request_id] ? Result.where(request_id: params[:request_id]) : Result.all
+  end
 
   def result_params
     params.require(:result).permit(:place, :height_result, :length_result, :score, :request_id)

@@ -15,8 +15,9 @@ h1.mt-3 Участники
         - @participants.each do |participant|
           tr
             td = participant.id
-            td = participant.name
+            td
+              = link_to participant.name, requests_path(participant_id: participant)
             td = participant.age
             td = participant.growth
             td = participant.weight
-            td = participant.club.name
+            td = participant.decorate.club_name

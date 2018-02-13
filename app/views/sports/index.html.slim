@@ -11,4 +11,5 @@ h1.mt-3 Виды спорта
         - @sports.each do |sport|
           tr
             td = sport.id
-            td = sport.name
+            td
+              = link_to sport.name, competitions_path(sport_id: sport)

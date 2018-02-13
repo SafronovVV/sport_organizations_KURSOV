@@ -14,10 +14,14 @@ class ClubsController < ApplicationController
   end
 
   def index
-    @clubs = Club.all
+    @clubs = get_collection
   end
 
   private
+
+  def get_collection
+    params[:sport_organization_id] ? Club.where(sport_organization_id: params[:sport_organization_id]) : Club.all
+  end
 
   def club_params
     params.require(:club).permit(:name, :club_type, :sport_id, :sport_organization_id)

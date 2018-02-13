@@ -14,7 +14,8 @@ h1.mt-3 Спортивные клубы
         - @clubs.each do |club|
           tr
             td = club.id
-            td = club.name
+            td
+              = link_to club.name, participants_path(club_id: club)
             td = club.club_type
             td = club.sport_organization.name
             td = club.sport.name
