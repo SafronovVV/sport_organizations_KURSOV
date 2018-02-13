@@ -11,5 +11,5 @@
           tr
             td = sport_organization.id
             td = sport_organization.name
-            td = sport_organization.director_name
+            td = sport_organization.director_name.presence || 'Не указано'
 = link_to 'Новый', new_sport_organization_path, class: "btn btn-outline-primary"

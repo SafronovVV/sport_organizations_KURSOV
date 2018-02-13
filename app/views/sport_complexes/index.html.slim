@@ -13,5 +13,5 @@
             td = sport_complex.id
             td = sport_complex.name
             td = sport_complex.address
-            td = sport_complex.capacity
+            td = sport_complex.capacity.presence || 'Не указано'
 = link_to 'Новый', new_sport_complex_path, class: "btn btn-outline-primary"

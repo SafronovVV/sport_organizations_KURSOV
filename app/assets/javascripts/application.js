@@ -11,8 +11,15 @@
 // about supported directives.
 //
 //= require rails-ujs
-//= require turbolinks
 //= require jquery3
 //= require popper
 //= require bootstrap
+//= require select2
 //= require_tree .
+
+
+$(document).ready(() => {
+  $( "select" ).select2({
+    theme: "bootstrap"
+  });
+})
