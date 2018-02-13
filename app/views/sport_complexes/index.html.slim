@@ -1,0 +1,17 @@
+.row.mt-3
+  .col-md
+    table.table
+      thead
+        tr
+          th #
+          th Название
+          th Адрес
+          th Вместимость
+      tbody
+        - @sport_complexes.each do |sport_complex|
+          tr
+            td = sport_complex.id
+            td = sport_complex.name
+            td = sport_complex.address
+            td = sport_complex.capacity
+= link_to 'Новый', new_sport_complex_path, class: "btn btn-outline-primary"
