@@ -29,6 +29,8 @@ html(data={the_log: Rails.env.development?})
             = link_to 'Клубы', clubs_path, class: 'nav-link'
           li.nav-item
             = link_to 'Соревнования', competitions_path, class: 'nav-link'
+          li.nav-item
+            = link_to 'Участники', participants_path, class: 'nav-link'
     .container-fluid
       = yield
 

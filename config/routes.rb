@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   resources :sport_organizations, only: %i[index new create]
   resources :clubs, only: %i[index new create]
   resources :competitions, only: %i[index new create]
+  resources :participants, only: %i[index new create]
   root 'sports#index'
 end

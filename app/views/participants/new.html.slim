@@ -1,0 +1,18 @@
+= form_for @participant, url: { action: :create }, html: { class: 'mt-3 form-row' } do |f|
+  .form-group.col-md-7
+    = f.label 'ФИО'
+    = f.text_field :name, class: 'form-control'
+  .form-group.col-md-7
+    = f.label 'Возраст'
+    = f.text_field :age, class: 'form-control'
+  .form-group.col-md-7
+    = f.label 'Рост'
+    = f.text_field :growth, class: 'form-control'
+  .form-group.col-md-7
+    = f.label 'Вес'
+    = f.text_field :weight, class: 'form-control'
+  .form-group.col-md-7
+    = f.label 'Клуб'
+    = f.select :club_id, Club.all.collect {|u| [u.name, u.id]}, {}, { class: 'form-control' }
+  .form-group.col-md-7
+    = f.submit 'Создать', class: 'btn btn-primary'
