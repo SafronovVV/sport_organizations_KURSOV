@@ -1,5 +1,25 @@
 h1.mt-3 Спортивные клубы
-= link_to 'Новый', new_club_path, class: "btn btn-outline-primary mt-3"
+= search_form_for @q  do |f|
+  .row.mt-3
+    .col
+      .btn-group role="group"
+        = link_to 'Новый', new_club_path, class: "btn btn-outline-primary"
+        button.btn.btn-primary type="button" data-toggle="collapse" data-target="#filterCollapse" aria-expanded="false" aria-controls="filterCollapse"
+          i.fa.fa-filter
+    .col-md-3.align-self-end
+      .input-group.mb-2
+        .input-group-prepend
+          .input-group-text Найти
+        = f.search_field :name_or_sport_organization_name_cont, class: 'form-control'
+  .row.form-row.mt-3.collapse id="filterCollapse"
+    .col-md-3.mt-3
+      = f.label 'По типу клуба'
+      = f.select :club_type_in, Club.club_types.to_a.map { |w| [w[0].humanize, w[1]] }, {}, { multiple: true }
+    .col-md-3.mt-3
+      = f.label 'По виду спорта'
+      = f.select :sport_id_in, Sport.all.collect {|u| [u.name, u.id]}, {}, { multiple: true }
+    .col
+      = f.submit 'Фильтровать', class: 'btn btn-primary mt-3'
 .row.mt-3
   .col-md
     table.table
@@ -15,7 +35,7 @@ h1.mt-3 Спортивные клубы
           tr
             td = club.id
             td
-              = link_to club.name, participants_path(club_id: club)
+              = link_to club.name, participants_path(q: {club_id_eq: club})
             td = club.club_type
             td = club.sport_organization.name
             td = club.sport.name

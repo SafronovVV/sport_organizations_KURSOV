@@ -1,4 +1,5 @@
 class RequestsController < ApplicationController
+  respond_to :docx
 
   def new
     @request = Request.new
@@ -14,7 +15,8 @@ class RequestsController < ApplicationController
   end
 
   def index
-    @requests = get_collection
+    @q = Request.ransack(params[:q])
+    @requests = @q.result
   end
 
   def download_list
@@ -25,11 +27,6 @@ class RequestsController < ApplicationController
   end
 
   private
-
-  def get_collection
-    (params[:participant_id] || params[:competition_id]) ? Request.where('participant_id = ? OR competition_id = ?',
-      params[:participant_id], params[:competition_id]) : Request.all
-  end
 
   def request_params
     params.require(:request).permit(:is_ill, :appeared, :participant_id, :competition_id)

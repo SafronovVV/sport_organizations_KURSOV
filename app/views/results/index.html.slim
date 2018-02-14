@@ -1,5 +1,23 @@
 h1.mt-3 Результаты
-= link_to 'Новый', new_result_path, class: "btn btn-outline-primary mt-3"
+= search_form_for @q do |f|
+  .row.mt-3
+    .col
+      .btn-group role="group"
+        = link_to 'Новый', new_result_path, class: "btn btn-outline-primary"
+        = link_to results_report_download_path(result_ids: @results.to_a), class: 'btn btn-primary', 'data-toggle' => 'tooltip',
+           'title' => 'Скачать список docx' do
+           i.fa.fa-download
+        button.btn.btn-primary type="button" data-toggle="collapse" data-target="#filterCollapse" aria-expanded="false" aria-controls="filterCollapse"
+          i.fa.fa-filter
+  .row.collapse.mt-3 id="filterCollapse"
+    .col-md-3.mt-3
+      = f.label 'По соревнованию'
+      = f.select :request_competition_id_eq, Competition.all.collect {|u| [u.name, u.id]}, {prompt: 'Не указано'}
+    .col-md-3.mt-3
+      .btn-group role="group"
+        = f.submit 'Фильтровать', class: 'btn btn-primary'
+        = link_to results_path, class: 'btn btn-outline-primary'
+          i.fa.fa-times
 .row.mt-3
   .col-md
     table.table

@@ -1,9 +1,29 @@
 h1.mt-3 Заявки
-.btn-group role="group"
-  = link_to 'Новый', new_request_path, class: "btn btn-outline-primary mt-3"
-  = link_to requests_list_download_path(request_ids: @requests.to_a), class: 'btn btn-primary mt-3', 'data-toggle' => 'tooltip',
-     'title' => 'Скачать список docx' do
-     i.fa.fa-download
+= search_form_for @q do |f|
+  .row.mt-3
+    .col
+      .btn-group role="group"
+        = link_to 'Новый', new_request_path, class: "btn btn-outline-primary"
+        = link_to requests_list_download_path(request_ids: @requests.to_a), class: 'btn btn-primary', 'data-toggle' => 'tooltip',
+           'title' => 'Скачать список docx' do
+           i.fa.fa-download
+        button.btn.btn-primary type="button" data-toggle="collapse" data-target="#filterCollapse" aria-expanded="false" aria-controls="filterCollapse"
+          i.fa.fa-filter
+  .row.collapse.mt-3 id="filterCollapse"
+    .col-md-3.mt-3
+      = f.label 'По соревнованию'
+      = f.select :competition_id_eq, Competition.all.collect {|u| [u.name, u.id]}, {prompt: 'Не указано'}
+    .col-md-3.mt-3
+      = f.label 'Болен'
+      = f.select :is_ill_eq, [['Да', true], ['Нет', false]], {prompt: 'Не указано'}
+    .col-md-3.mt-3
+      = f.label 'Явился'
+      = f.select :appeared_eq, [['Да', true], ['Нет', false]], {prompt: 'Не указано'}
+    .col-md-3.mt-3
+      .btn-group role="group"
+        = f.submit 'Фильтровать', class: 'btn btn-primary'
+        = link_to requests_path, class: 'btn btn-outline-primary'
+          i.fa.fa-times
 .row.mt-3
   .col-md
     table.table
@@ -18,6 +38,6 @@ h1.mt-3 Заявки
           tr
             td = request.id
             td
-              = link_to request.decorate.result_title, results_path(request_id: request)
+              = link_to request.decorate.result_title, results_path(q: {request_id_eq: request})
             td = yesno(request.is_ill)
             td = yesno(request.appeared)

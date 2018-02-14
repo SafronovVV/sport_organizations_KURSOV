@@ -15,7 +15,8 @@ class ParticipantsController < ApplicationController
   end
 
   def index
-    @participants = get_collection
+    @q = Participant.ransack(params[:q])
+    @participants = @q.result
   end
 
   def download_list
@@ -26,10 +27,6 @@ class ParticipantsController < ApplicationController
   end
 
   private
-
-  def get_collection
-    params[:club_id] ? Participant.where(club_id: params[:club_id]) : Participant.all
-  end
 
   def participant_params
     params.require(:participant).permit(:name, :age, :growth, :weight, :club_id)

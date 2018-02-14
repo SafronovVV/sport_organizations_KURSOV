@@ -14,7 +14,8 @@ class SportOrganizationsController < ApplicationController
   end
 
   def index
-    @sport_organizations = SportOrganization.all
+    @q = SportOrganization.ransack(params[:q])
+    @sport_organizations = @q.result
   end
 
   private

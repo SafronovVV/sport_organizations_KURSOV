@@ -14,7 +14,8 @@ class SportComplexesController < ApplicationController
   end
 
   def index
-    @sport_complexes = SportComplex.all
+    @q = SportComplex.ransack(params[:q])
+    @sport_complexes = @q.result
   end
 
   private

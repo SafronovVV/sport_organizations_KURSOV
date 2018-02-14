@@ -11,5 +11,6 @@ Rails.application.routes.draw do
 
   get 'participants_list_download' => 'participants#download_list', format: 'docx'
   get 'requests_list_download' => 'requests#download_list', format: 'docx'
+  get 'results_report_download' => 'results#download_list', format: 'docx'
   root 'sports#index'
 end

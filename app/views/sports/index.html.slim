@@ -1,5 +1,13 @@
 h1.mt-3 Виды спорта
-= link_to 'Новый', new_sport_path, class: "btn btn-outline-primary mt-3"
+= search_form_for @q  do |f|
+  .row.mt-3
+    .col
+      = link_to 'Новый', new_sport_path, class: "btn btn-outline-primary"
+    .col-md-3.align-self-end
+      .input-group.mb-2
+        .input-group-prepend
+          .input-group-text Найти
+        = f.search_field :name_cont, class: 'form-control'
 .row.mt-3
   .col-md
     table.table
@@ -12,4 +20,4 @@ h1.mt-3 Виды спорта
           tr
             td = sport.id
             td
-              = link_to sport.name, competitions_path(sport_id: sport)
+              = link_to sport.name, competitions_path(q: {sport_id_eq: sport})

@@ -23,6 +23,7 @@ gem 'draper', github: 'drapergem/draper'
 gem 'responders'
 gem 'htmltoword', git: "https://github.com/karnov/htmltoword"
 gem "font-awesome-rails"
+gem 'ransack'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

@@ -15,15 +15,11 @@ class CompetitionsController < ApplicationController
   end
 
   def index
-    @competitions = get_collection
+    @q = Competition.ransack(params[:q])
+    @competitions = @q.result
   end
 
   private
-
-  def get_collection
-    (params[:sport_id] || params[:sport_complex_id]) ? Competition.where('sport_id=? OR sport_complex_id=?',
-          params[:sport_id], params[:sport_complex_id]) : Competition.all
-  end
 
   def competition_params
     params.require(:competition).permit(:name, :organizator, :date, :sport_id, :sport_complex_id)

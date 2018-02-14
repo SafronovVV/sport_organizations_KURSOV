@@ -14,14 +14,11 @@ class ClubsController < ApplicationController
   end
 
   def index
-    @clubs = get_collection
+    @q = Club.ransack(params[:q])
+    @clubs = @q.result
   end
 
   private
-
-  def get_collection
-    params[:sport_organization_id] ? Club.where(sport_organization_id: params[:sport_organization_id]) : Club.all
-  end
 
   def club_params
     params.require(:club).permit(:name, :club_type, :sport_id, :sport_organization_id)

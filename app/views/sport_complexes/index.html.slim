@@ -1,5 +1,13 @@
 h1.mt-3 Спорткомплексы
-= link_to 'Новый', new_sport_complex_path, class: "btn btn-outline-primary mt-3"
+= search_form_for @q do |f|
+  .row.mt-3
+    .col
+      = link_to 'Новый', new_sport_complex_path, class: "btn btn-outline-primary"
+    .col-md-3.align-self-end
+      .input-group.mb-2
+        .input-group-prepend
+          .input-group-text Найти
+        = f.search_field :name_or_address_cont, class: 'form-control'
 .row.mt-3
   .col-md
     table.table
@@ -14,6 +22,6 @@ h1.mt-3 Спорткомплексы
           tr
             td = sport_complex.id
             td
-              = link_to sport_complex.name, competitions_path(sport_complex_id: sport_complex)
+              = link_to sport_complex.name, competitions_path(q: {sport_complex_id_eq: sport_complex})
             td = sport_complex.address
             td = sport_complex.capacity.presence || 'Не указано'

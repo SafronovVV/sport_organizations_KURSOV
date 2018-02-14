@@ -1,5 +1,13 @@
 h1.mt-3 Спортивные организации
-= link_to 'Новый', new_sport_organization_path, class: "btn btn-outline-primary mt-3"
+= search_form_for @q do |f|
+  .row.mt-3
+    .col
+      = link_to 'Новый', new_sport_organization_path, class: "btn btn-outline-primary"
+    .col-md-3.align-self-end
+      .input-group.mb-2
+        .input-group-prepend
+          .input-group-text Найти
+        = f.search_field :name_cont, class: 'form-control'
 .row.mt-3
   .col-md
     table.table
@@ -12,5 +20,5 @@ h1.mt-3 Спортивные организации
         - @sport_organizations.each do |sport_organization|
           tr
             td = sport_organization.id
-            td = link_to sport_organization.name, clubs_path(sport_organization_id: sport_organization)
+            td = link_to sport_organization.name, clubs_path(q: {sport_organization_id_eq: sport_organization})
             td = sport_organization.director_name.presence || 'Не указано'

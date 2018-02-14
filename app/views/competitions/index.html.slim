@@ -16,7 +16,7 @@ h1.mt-3 Соревнования
           tr
             td = competition.id
             td
-              = link_to competition.name, requests_path(competition_id: competition)
+              = link_to competition.name, requests_path(q: {competition_id_eq: competition})
             td = competition.organizator.presence || 'Не указано'
             td = competition.date.strftime("%d-%m-%Y").presence || 'Не указано'
             td = competition.sport.name

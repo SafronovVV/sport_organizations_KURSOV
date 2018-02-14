@@ -1,9 +1,27 @@
 h1.mt-3 Участники
-.btn-group role="group"
-  = link_to 'Новый', new_participant_path, class: "btn btn-outline-primary mt-3"
-  = link_to participants_list_download_path(participant_ids: @participants.to_a), class: 'btn btn-primary mt-3', 'data-toggle' => 'tooltip',
-   'title' => 'Скачать список docx' do
-    i.fa.fa-download
+= search_form_for @q do |f|
+  .row.mt-3
+    .col
+      .btn-group role="group"
+        = link_to 'Новый', new_participant_path, class: "btn btn-outline-primary"
+        = link_to participants_list_download_path(participant_ids: @participants.to_a), class: 'btn btn-primary', 'data-toggle' => 'tooltip',
+         'title' => 'Скачать список docx' do
+          i.fa.fa-download
+        button.btn.btn-primary type="button" data-toggle="collapse" data-target="#filterCollapse" aria-expanded="false" aria-controls="filterCollapse"
+          i.fa.fa-filter
+    .col-md-3.align-self-end
+      .input-group.mb-2
+        .input-group-prepend
+          .input-group-text Найти
+        = f.search_field :name_cont, class: 'form-control'
+  .row.mt-3.collapse id = "filterCollapse"
+    .col-md-3
+      = f.label 'По клубу'
+      = f.select :club_id_in, Club.all.decorate.collect {|u| [u.short_info, u.id]}, { include_blank: 'Не указано' }, { multiple: true }
+      .btn-group.mt-3 role="group"
+        = f.submit 'Фильтровать', class: 'btn btn-primary'
+        = link_to participants_path, class: 'btn btn-outline-primary'
+          i.fa.fa-times
 .row.mt-3
   .col-md
     table.table
@@ -20,7 +38,7 @@ h1.mt-3 Участники
           tr
             td = participant.id
             td
-              = link_to participant.name, requests_path(participant_id: participant)
+              = link_to participant.name, requests_path(q: {participant_id_eq: participant})
             td = participant.age
             td = participant.growth
             td = participant.weight

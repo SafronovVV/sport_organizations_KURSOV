@@ -1,4 +1,5 @@
 class ResultsController < ApplicationController
+  respond_to :docx
 
   def new
     @result = Result.new
@@ -14,14 +15,18 @@ class ResultsController < ApplicationController
   end
 
   def index
-    @results = get_collection
+    @q = Result.ransack(params[:q])
+    @results = @q.result
+  end
+
+  def download_list
+    @results = Result.find(params[:result_ids])
+    respond_to do |format|
+      format.docx { render docx: 'results_report', filename: 'results_report.docx' }
+    end
   end
 
   private
-
-  def get_collection
-    params[:request_id] ? Result.where(request_id: params[:request_id]) : Result.all
-  end
 
   def result_params
     params.require(:result).permit(:place, :height_result, :length_result, :score, :request_id)
