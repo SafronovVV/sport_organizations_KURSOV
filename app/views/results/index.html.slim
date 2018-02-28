@@ -10,10 +10,10 @@ h1.mt-3 Результаты
         button.btn.btn-primary type="button" data-toggle="collapse" data-target="#filterCollapse" aria-expanded="false" aria-controls="filterCollapse"
           i.fa.fa-filter
   .row.collapse.mt-3 id="filterCollapse"
-    .col-md-3.mt-3
-      = f.label 'По соревнованию'
-      = f.select :request_competition_id_eq, Competition.all.collect {|u| [u.name, u.id]}, {prompt: 'Не указано'}
-    .col-md-3.mt-3
+    .col-md-4
+      .form-group
+        = f.label 'По соревнованию'
+        = f.select :request_competition_id_eq, Competition.all.collect {|u| [u.name, u.id]}, {prompt: 'Не указано'}
       .btn-group role="group"
         = f.submit 'Фильтровать', class: 'btn btn-primary'
         = link_to results_path, class: 'btn btn-outline-primary'

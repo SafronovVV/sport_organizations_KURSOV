@@ -1,0 +1,20 @@
+= form_for @participant, html: { class: 'mt-3 form-row' } do |f|
+  .form-group.col-md-7
+    = f.label 'ФИО*'
+    = f.text_field :name, class: 'form-control'
+  .form-group.col-md-7
+    = f.label 'Возраст*'
+    = f.text_field :age, class: 'form-control'
+  .form-group.col-md-7
+    = f.label 'Рост*'
+    = f.text_field :growth, class: 'form-control'
+  .form-group.col-md-7
+    = f.label 'Вес*'
+    = f.text_field :weight, class: 'form-control'
+  .form-group.col-md-7
+    = f.label 'Клуб'
+    = f.select :club_id, Club.all.decorate.collect {|u| [u.short_info, u.id]}, { prompt: 'Не указано' }, { class: 'form-control' }
+  .form-group.col-md-7
+    p.text-muted * - Обязательное поле
+  .form-group.col-md-7
+    = f.submit 'Применить', class: 'btn btn-primary'

@@ -10,16 +10,16 @@ h1.mt-3 Заявки
         button.btn.btn-primary type="button" data-toggle="collapse" data-target="#filterCollapse" aria-expanded="false" aria-controls="filterCollapse"
           i.fa.fa-filter
   .row.collapse.mt-3 id="filterCollapse"
-    .col-md-3.mt-3
-      = f.label 'По соревнованию'
-      = f.select :competition_id_eq, Competition.all.collect {|u| [u.name, u.id]}, {prompt: 'Не указано'}
-    .col-md-3.mt-3
-      = f.label 'Болен'
-      = f.select :is_ill_eq, [['Да', true], ['Нет', false]], {prompt: 'Не указано'}
-    .col-md-3.mt-3
-      = f.label 'Явился'
-      = f.select :appeared_eq, [['Да', true], ['Нет', false]], {prompt: 'Не указано'}
-    .col-md-3.mt-3
+    .col-md-4
+      .form-group
+        = f.label 'По соревнованию'
+        = f.select :competition_id_eq, Competition.all.collect {|u| [u.name, u.id]}, {prompt: 'Не указано'}
+      .form-group
+        = f.label 'Болен'
+        = f.select :is_ill_eq, [['Да', true], ['Нет', false]], {prompt: 'Не указано'}
+      .form-group
+        = f.label 'Явился'
+        = f.select :appeared_eq, [['Да', true], ['Нет', false]], {prompt: 'Не указано'}
       .btn-group role="group"
         = f.submit 'Фильтровать', class: 'btn btn-primary'
         = link_to requests_path, class: 'btn btn-outline-primary'
@@ -33,6 +33,8 @@ h1.mt-3 Заявки
           th Заявка
           th Болен
           th Явился
+          th
+            i.fa.fa-pencil-square-o
       tbody
         - @requests.each do |request|
           tr
@@ -41,3 +43,6 @@ h1.mt-3 Заявки
               = link_to request.decorate.result_title, results_path(q: {request_id_eq: request})
             td = yesno(request.is_ill)
             td = yesno(request.appeared)
+            td
+              = link_to edit_request_path(request)
+                i.fa.fa-pencil-square-o

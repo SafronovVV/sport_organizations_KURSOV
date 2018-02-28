@@ -19,6 +19,19 @@ class RequestsController < ApplicationController
     @requests = @q.result
   end
 
+  def edit
+    @request = Request.find(params[:id])
+  end
+
+  def update
+    @request = Request.find(params[:id])
+    if @request.update(request_params)
+      redirect_to requests_path
+    else
+      render 'edit'
+    end
+  end
+
   def download_list
     @requests = Request.find(params[:request_ids])
     respond_to do |format|

@@ -19,6 +19,19 @@ class ParticipantsController < ApplicationController
     @participants = @q.result
   end
 
+  def edit
+    @participant = Participant.find(params[:id])
+  end
+
+  def update
+    @participant = Participant.find(params[:id])
+    if @participant.update(participant_params)
+      redirect_to participants_path
+    else
+      render 'edit'
+    end
+  end
+
   def download_list
     @participants = Participant.find(params[:participant_ids])
     respond_to do |format|
