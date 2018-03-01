@@ -1,4 +1,5 @@
 class ParticipantsController < ApplicationController
+  before_action :find_participant, only: %i[edit update]
   respond_to :docx
 
   def new
@@ -19,12 +20,9 @@ class ParticipantsController < ApplicationController
     @participants = @q.result
   end
 
-  def edit
-    @participant = Participant.find(params[:id])
-  end
+  def edit;end
 
   def update
-    @participant = Participant.find(params[:id])
     if @participant.update(participant_params)
       redirect_to participants_path
     else
@@ -40,6 +38,10 @@ class ParticipantsController < ApplicationController
   end
 
   private
+
+  def find_participant
+    @participant = Participant.find(params[:id])
+  end
 
   def participant_params
     params.require(:participant).permit(:name, :age, :growth, :weight, :club_id)

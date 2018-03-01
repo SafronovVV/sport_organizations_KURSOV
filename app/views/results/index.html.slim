@@ -20,23 +20,4 @@ h1.mt-3 Результаты
           i.fa.fa-times
 .row.mt-3
   .col-md
-    table.table
-      thead
-        tr
-          th #
-          th Участник
-          th Соревнование
-          th Место
-          th Длина
-          th Высота
-          th Счет
-      tbody
-        - @results.each do |result|
-          tr
-            td = result.id
-            td = result.request.participant.name
-            td = result.request.competition.name
-            td = result.place
-            td = result.length_result.presence || 'Не указано'
-            td = result.height_result.presence || 'Не указано'
-            td = result.score.presence || 'Не указано'
+    = render 'table_form'

@@ -26,23 +26,4 @@ h1.mt-3 Заявки
           i.fa.fa-times
 .row.mt-3
   .col-md
-    table.table
-      thead
-        tr
-          th #
-          th Заявка
-          th Болен
-          th Явился
-          th
-            i.fa.fa-pencil-square-o
-      tbody
-        - @requests.each do |request|
-          tr
-            td = request.id
-            td
-              = link_to request.decorate.result_title, results_path(q: {request_id_eq: request})
-            td = yesno(request.is_ill)
-            td = yesno(request.appeared)
-            td
-              = link_to edit_request_path(request)
-                i.fa.fa-pencil-square-o
+    = render 'table_form', update_link: true

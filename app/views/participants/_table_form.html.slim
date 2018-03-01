@@ -1,0 +1,26 @@
+table.table
+  thead
+    tr
+      th #
+      th ФИО участника
+      th Возраст
+      th Рост
+      th Вес
+      th Клуб
+      - if local_assigns[:update_link]
+        th
+          i.fa.fa-pencil-square-o
+  tbody
+    - @participants.each do |participant|
+      tr
+        td = participant.id
+        td
+          = link_to participant.name, requests_path(q: {participant_id_eq: participant})
+        td = participant.age
+        td = participant.growth
+        td = participant.weight
+        td = participant.decorate.club_name
+        - if local_assigns[:update_link]
+          td
+            = link_to edit_participant_path(participant)
+              i.fa.fa-pencil-square-o

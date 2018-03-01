@@ -1,0 +1,22 @@
+table.table
+  thead
+    tr
+      th #
+      th Заявка
+      th Болен
+      th Явился
+      - if local_assigns[:update_link]
+        th
+          i.fa.fa-pencil-square-o
+  tbody
+    - @requests.each do |request|
+      tr
+        td = request.id
+        td
+          = link_to request.decorate.result_title, results_path(q: {request_id_eq: request})
+        td = yesno(request.is_ill)
+        td = yesno(request.appeared)
+        - if local_assigns[:update_link]
+          td
+            = link_to edit_request_path(request)
+              i.fa.fa-pencil-square-o
