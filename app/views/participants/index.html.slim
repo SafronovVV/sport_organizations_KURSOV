@@ -15,7 +15,7 @@ h1.mt-3 Участники
           .input-group-text Найти
         = f.search_field :name_cont, class: 'form-control'
   .row.mt-3.collapse id = "filterCollapse"
-    .col-md-3
+    .col-md-4
       = f.label 'По клубу'
       = f.select :club_id_in, Club.all.decorate.collect {|u| [u.short_info, u.id]}, { include_blank: 'Не указано' }, { multiple: true }
       .btn-group.mt-3 role="group"

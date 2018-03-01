@@ -19,22 +19,9 @@ html(data={the_log: Rails.env.development?})
         span.navbar-toggler-icon
       #navbarNav.collapse.navbar-collapse
         ul.navbar-nav
-          li.nav-item
-            = link_to 'Виды спорта', sports_path, class: 'nav-link'
-          li.nav-item
-            = link_to 'Спорткомплексы', sport_complexes_path, class: 'nav-link'
-          li.nav-item
-            = link_to 'Организации', sport_organizations_path, class: 'nav-link'
-          li.nav-item
-            = link_to 'Клубы', clubs_path, class: 'nav-link'
-          li.nav-item
-            = link_to 'Соревнования', competitions_path, class: 'nav-link'
-          li.nav-item
-            = link_to 'Участники', participants_path, class: 'nav-link'
-          li.nav-item
-            = link_to 'Заявки', requests_path, class: 'nav-link'
-          li.nav-item
-            = link_to 'Результаты', results_path, class: 'nav-link'
+          - navigation_links.each do |item|
+            li.nav-item
+              = link_to item[0], item[1], class: 'nav-link'
     .container-fluid
       = yield
 
