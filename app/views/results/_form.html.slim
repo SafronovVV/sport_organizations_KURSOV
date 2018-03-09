@@ -1,0 +1,22 @@
+h1.mt-3 = local_assigns[:header] || ''
+= form_for @result, url: { action: :create }, html: { class: 'mt-3 form-row' } do |f|
+  - if local_assigns[:create_form]
+    .form-group.col-md-7
+      = f.label 'Заявка*'
+      = f.select :request_id, Request.all.decorate.collect {|u| [u.result_title, u.id] }, {}, { class: 'form-control' }
+  .form-group.col-md-7
+    = f.label 'Место*'
+    = f.text_field :place, class: 'form-control'
+  .form-group.col-md-7
+    = f.label 'Счет'
+    = f.text_field :score, class: 'form-control'
+  .form-group.col-md-7
+    = f.label 'Длина'
+    = f.text_field :length_result, class: 'form-control'
+  .form-group.col-md-7
+    = f.label 'Высота'
+    = f.text_field :height_result, class: 'form-control'
+  .form-group.col-md-7
+    p.text-muted * - Обязательное поле
+  .form-group.col-md-7
+    = f.submit 'Создать', class: 'btn btn-primary'

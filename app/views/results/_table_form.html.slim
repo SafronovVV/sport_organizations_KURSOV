@@ -8,6 +8,9 @@ table.table
       th Длина
       th Высота
       th Счет
+      - if local_assigns[:update_link]
+        th
+          i.fa.fa-pencil-square-o
   tbody
     - @results.each do |result|
       tr
@@ -18,3 +21,6 @@ table.table
         td = result.length_result.presence || 'Не указано'
         td = result.height_result.presence || 'Не указано'
         td = result.score.presence || 'Не указано'
+        td
+          = link_to edit_result_path(result)
+            i.fa.fa-pencil-square-o
