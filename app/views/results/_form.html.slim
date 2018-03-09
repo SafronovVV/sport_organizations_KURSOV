@@ -19,4 +19,4 @@ h1.mt-3 = local_assigns[:header] || ''
   .form-group.col-md-7
     p.text-muted * - Обязательное поле
   .form-group.col-md-7
-    = f.submit 'Создать', class: 'btn btn-primary'
+    = f.submit local_assigns[:submit], class: 'btn btn-primary'
