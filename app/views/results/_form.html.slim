@@ -1,5 +1,5 @@
 h1.mt-3 = local_assigns[:header] || ''
-= form_for @result, url: { action: :create }, html: { class: 'mt-3 form-row' } do |f|
+= form_for @result, html: { class: 'mt-3 form-row' } do |f|
   - if local_assigns[:create_form]
     .form-group.col-md-7
       = f.label 'Заявка*'
