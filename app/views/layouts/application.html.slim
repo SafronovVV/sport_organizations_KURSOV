@@ -11,7 +11,7 @@ html(data={the_log: Rails.env.development?})
     = javascript_include_tag :application, 'data-turbolinks-track' => true
 
     = csrf_meta_tags
-  body
+  body class = "#{controller_name} #{action_name}"
     nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
       = link_to 'Спорт коммитет', root_path, class: 'navbar-brand'
       button.navbar-toggler [aria-controls="navbarNav" aria-expanded="false"
@@ -22,7 +22,5 @@ html(data={the_log: Rails.env.development?})
           - navigation_links.each do |item|
             li.nav-item
               = link_to item[0], item[1], class: 'nav-link'
-    .container-fluid
+    .container-fluid.mt-3
       = yield
-
-

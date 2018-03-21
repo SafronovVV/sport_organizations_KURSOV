@@ -44,6 +44,6 @@ class RequestsController < ApplicationController
   end
 
   def request_params
-    params.require(:request).permit(:is_ill, :appeared, :participant_id, :competition_id)
+    params.require(:request).permit(:is_ill, :appeared, :participant_id, :competition_id, :club_id)
   end
 end

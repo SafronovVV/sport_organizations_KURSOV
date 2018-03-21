@@ -1,9 +1,9 @@
-h1.mt-3 = local_assigns[:header] || ''
+h1 = local_assigns[:header] || ''
 = form_for @result, html: { class: 'mt-3 form-row' } do |f|
   - if local_assigns[:create_form]
     .form-group.col-md-7
       = f.label 'Заявка*'
-      = f.select :request_id, Request.all.decorate.collect {|u| [u.result_title, u.id] }, {}, { class: 'form-control' }
+      = f.select :request_id, Request.all.decorate.collect {|u| [u.display_name, u.id] }, {}, { class: 'form-control' }
   .form-group.col-md-7
     = f.label 'Место*'
     = f.text_field :place, class: 'form-control'

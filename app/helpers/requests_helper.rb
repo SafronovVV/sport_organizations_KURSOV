@@ -1,5 +1,7 @@
 module RequestsHelper
   def yesno(boolean)
-    boolean ? 'Да' : 'Нет'
+    return 'Да' if boolean == true
+    return 'Нет' if boolean == false
+    'Не указано'
   end
 end

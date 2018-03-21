@@ -1,2 +1,14 @@
-h1.mt-3 Новая заявка
+h1.d-inline Новая заявка
+a href="#" onclick="$('#dialogOnRequest').modal('show')"
+  i.fa.fa-cog.d-inline.ml-3
 = render 'form'
+#dialogOnRequest.modal.fade aria-hidden="true" role="dialog" tabindex="-1" data-backdrop="static"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        h2 Выберите действие
+      .modal-body
+        p Вы собираетесь создать заявку на командное соревнование?
+      .modal-footer
+        button.btn.btn-primary onclick="clubRequest()" Да
+        button.btn.btn-primary onclick="participantRequest()" Нет

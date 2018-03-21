@@ -1,13 +1,19 @@
 = form_for @request, html: { class: 'mt-3 form-row' } do |f|
-  .form-group.col-md-7
-    = f.label 'Участник*'
-    = f.select :participant_id, Participant.all.decorate.collect {|u| [u.short_info, u.id]}, {}, { class: 'form-control' }
+  - if controller_name == "requests" && action_name == "edit" && @request.participant || action_name == "new" || action_name == "create"
+    #requestParticipantSelector.form-group.col-md-7
+      = f.label 'Участник'
+      = f.select :participant_id, Participant.all.decorate.collect {|u| [u.short_info, u.id]}, {prompt: 'Не указано' }, { class: 'form-control' }
+  - if controller_name == "requests" && action_name == "edit" && @request.club || action_name == "new" || action_name == "create"
+    #requestClubSelector.form-group.col-md-7
+      = f.label 'Спортивный клуб'
+      = f.select :club_id, Club.all.decorate.collect {|u| [u.short_info, u.id]}, {prompt: 'Не указано' }, { class: 'form-control' }
   .form-group.col-md-7
     = f.label 'Соревнование*'
     = f.select :competition_id, Competition.all.collect {|u| [u.name, u.id]}, {}, { class: 'form-control' }
-  .form-group.col-md-7
-    = f.label 'Болен*'
-    = f.select :is_ill, [['Да', true], ['Нет', false]], {}, { class: 'form-control' }
+  - if controller_name == "requests" && action_name == "edit" && @request.is_ill || action_name == "new" || action_name == "create"
+    #requestIsIllSelector.form-group.col-md-7
+      = f.label 'Болен*'
+      = f.select :is_ill, [['Да', true], ['Нет', false]], {}, { class: 'form-control' }
   .form-group.col-md-7
     = f.label 'Явился*'
     = f.select :appeared, [['Да', true], ['Нет', false]], {}, { class: 'form-control' }

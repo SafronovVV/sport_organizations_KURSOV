@@ -1,6 +1,7 @@
 class Club < ApplicationRecord
   belongs_to :sport_organization
   belongs_to :sport
+  has_many :requests
 
   validates_presence_of :name
 

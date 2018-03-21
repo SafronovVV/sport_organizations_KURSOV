@@ -13,7 +13,7 @@ table.table
       tr
         td = request.id
         td
-          = link_to request.decorate.result_title, results_path(q: {request_id_eq: request})
+          = link_to request.decorate.display_name, results_path(q: {request_id_eq: request})
         td = yesno(request.is_ill)
         td = yesno(request.appeared)
         - if local_assigns[:update_link]

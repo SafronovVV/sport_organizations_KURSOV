@@ -15,7 +15,7 @@ table.table
     - @results.each do |result|
       tr
         td = result.id
-        td = result.request.participant.name
+        td = result.request.decorate.short_display_name
         td = result.request.competition.name
         td = result.place
         td = result.length_result.presence || 'Не указано'
